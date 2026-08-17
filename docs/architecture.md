@@ -372,7 +372,7 @@ Git	GitHub / Azure DevOps
 In a production implementation, Azure Data Factory could be used to orchestrate ingestion and pipeline execution.
 
 A possible flow would be:
-
+```txt
 Source
   |
   v
@@ -386,7 +386,7 @@ Databricks Job
   |
   v
 Bronze → Silver → Gold
-
+```
 Potential responsibilities include:
 
 Pipeline orchestration
@@ -403,7 +403,7 @@ Failure handling
 ADLS Gen2 could provide cloud storage for the different data layers.
 
 Example structure:
-
+```txt
 retailpulse/
 │
 ├── raw/
@@ -413,7 +413,7 @@ retailpulse/
 ├── silver/
 │
 └── gold/
-
+```
 The separation of layers makes it easier to manage data throughout its lifecycle.
 
 ---
@@ -423,7 +423,7 @@ The separation of layers makes it easier to manage data throughout its lifecycle
 Azure Databricks could execute the PySpark transformations in a production environment.
 
 Potential Databricks workflow:
-
+```txt
 Raw Data
    |
    v
@@ -434,7 +434,7 @@ Databricks Notebook / Job
    +------> Silver
    |
    +------> Gold
-
+```
 Databricks Jobs could be scheduled and monitored as part of an automated data pipeline.
 
 ---
@@ -444,7 +444,7 @@ Databricks Jobs could be scheduled and monitored as part of an automated data pi
 Delta Lake could be used to store Bronze, Silver, and Gold datasets as transactional tables.
 
 Potential structure:
-
+```txt
 Bronze Delta Table
         |
         v
@@ -452,7 +452,7 @@ Silver Delta Table
         |
         v
 Gold Delta Table
-
+```
 Potential benefits include:
 
 ACID transactions
@@ -470,7 +470,7 @@ Efficient analytical processing
 Snowflake could be used as a downstream analytical warehouse.
 
 A potential flow would be:
-
+```txt
 Azure Data Lake
        |
        v
@@ -484,7 +484,7 @@ Snowflake
        |
        v
 SQL Analytics
-
+```
 Snowflake could provide a centralized environment for analytical workloads and reporting.
 
 ---
@@ -494,7 +494,7 @@ Snowflake could provide a centralized environment for analytical workloads and r
 A production implementation could use GitHub or Azure DevOps to automate testing and deployment.
 
 Example:
-
+```txt
 Developer
     |
     v
@@ -517,6 +517,7 @@ Deployment
     |
     v
 Databricks / Azure Environment
+```
 ---
 
 # 17. Monitoring
@@ -532,7 +533,7 @@ Storage problems
 Schema changes
 
 Example:
-
+```txt
 Pipeline
    |
    v
@@ -541,7 +542,7 @@ Validation
    +---- PASS ---> Continue
    |
    +---- FAIL ---> Alert
-
+```
 ---
 
 # 18. Incremental Processing
@@ -551,7 +552,7 @@ The current project processes the dataset as a batch.
 A production implementation could support incremental processing.
 
 Example:
-
+```txt
 Day 1
   |
   v
@@ -571,7 +572,7 @@ Incremental Processing
   |
   v
 Silver / Gold
-
+```
 Possible approaches include:
 
 Processing based on order date
@@ -640,7 +641,7 @@ The cloud technologies listed above are planned extensions and are not claimed a
 The goal of RetailPulse is to demonstrate practical data engineering concepts through a complete pipeline rather than isolated scripts.
 
 The project focuses on:
-
+```txt
 Ingestion
    ↓
 Transformation
@@ -650,5 +651,5 @@ Data Quality
 Business Modeling
    ↓
 Analytics
-
+```
 The architecture provides a foundation that can be migrated from a local PySpark environment to a cloud-based data platform.
