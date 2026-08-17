@@ -42,7 +42,10 @@ The architecture is designed so that the same processing pattern can later be ex
                              |
                              v
                        SQL Analytics
-2. Data Generation
+```
+---
+
+# 2. Data Generation
 
 The project generates synthetic retail order data using Python.
 
@@ -67,7 +70,10 @@ Input Generation Script
 src/generate_data.py
 Generated Dataset
 data/raw/orders.csv
-3. Bronze Layer
+
+---
+
+# 3. Bronze Layer
 
 The Bronze layer is responsible for ingesting the raw dataset using PySpark.
 
@@ -93,7 +99,9 @@ data/bronze/orders
 
 The Bronze layer is intended to keep the data close to its original form before major business transformations are applied.
 
-4. Silver Layer
+---
+
+# 4. Silver Layer
 
 The Silver layer performs data cleansing, standardization, and validation.
 
@@ -136,7 +144,10 @@ Silver cleaning and validation
        |
        v
 499 valid records
-5. Data Quality Checks
+
+---
+
+# 5. Data Quality Checks
 
 RetailPulse includes automated data-quality validation using PySpark.
 
@@ -183,7 +194,9 @@ PASS - All data quality checks passed.
 
 This quality-check stage acts as a validation gate before downstream analytics.
 
-6. Gold Layer
+---
+
+# 6. Gold Layer
 
 The Gold layer creates business-ready analytical data.
 
@@ -222,7 +235,11 @@ Input
 data/silver/orders
 Output
 data/gold/sales
-7. SQL Analytics
+
+
+---
+
+# 7. SQL Analytics
 
 SQL analytics are stored in:
 
@@ -250,7 +267,12 @@ GROUP BY
     product_name,
     category
 ORDER BY total_revenue DESC;
-8. Current Project Architecture
+
+---
+
+# 8. Current Project Architecture
+
+```txt
                          RETAILPULSE
                               |
                               v
@@ -290,10 +312,14 @@ ORDER BY total_revenue DESC;
                     +----------------+
                     | SQL Analytics  |
                     +----------------+
-9. Cloud Target Architecture
+```
+
+---
+
+# 9. Cloud Target Architecture
 
 The local pipeline can be extended into a cloud-based architecture using Azure, Databricks, Delta Lake, and Snowflake.
-
+```txt
                          Retail Data
                               |
                               v
@@ -322,10 +348,12 @@ The local pipeline can be extended into a cloud-based architecture using Azure, 
                               |
                               v
                       Analytics / BI
-
+```
 This represents a potential production architecture rather than the current local implementation.
 
-10. Cloud Technology Mapping
+---
+
+# 10. Cloud Technology Mapping
 Current Project	Potential Production Technology
 Python	Python
 PySpark	Azure Databricks
@@ -336,7 +364,10 @@ Gold directory	Delta Lake Gold
 SQL analytics	Snowflake SQL
 Local scripts	Databricks Jobs
 Git	GitHub / Azure DevOps
-11. Azure Data Factory
+
+---
+
+# 11. Azure Data Factory
 
 In a production implementation, Azure Data Factory could be used to orchestrate ingestion and pipeline execution.
 
@@ -364,7 +395,10 @@ Dependency management
 Pipeline monitoring
 Trigger management
 Failure handling
-12. Azure Data Lake Storage Gen2
+
+---
+
+# 12. Azure Data Lake Storage Gen2
 
 ADLS Gen2 could provide cloud storage for the different data layers.
 
@@ -382,7 +416,9 @@ retailpulse/
 
 The separation of layers makes it easier to manage data throughout its lifecycle.
 
-13. Azure Databricks
+---
+
+# 13. Azure Databricks
 
 Azure Databricks could execute the PySpark transformations in a production environment.
 
@@ -401,7 +437,9 @@ Databricks Notebook / Job
 
 Databricks Jobs could be scheduled and monitored as part of an automated data pipeline.
 
-14. Delta Lake
+---
+
+# 14. Delta Lake
 
 Delta Lake could be used to store Bronze, Silver, and Gold datasets as transactional tables.
 
@@ -423,7 +461,11 @@ Schema evolution
 Version history
 Reliable data pipelines
 Efficient analytical processing
-15. Snowflake
+
+
+---
+
+# 15. Snowflake
 
 Snowflake could be used as a downstream analytical warehouse.
 
@@ -445,7 +487,9 @@ SQL Analytics
 
 Snowflake could provide a centralized environment for analytical workloads and reporting.
 
-16. CI/CD
+---
+
+# 16. CI/CD
 
 A production implementation could use GitHub or Azure DevOps to automate testing and deployment.
 
@@ -473,7 +517,9 @@ Deployment
     |
     v
 Databricks / Azure Environment
-17. Monitoring
+---
+
+# 17. Monitoring
 
 A production version could include monitoring for:
 
@@ -495,7 +541,10 @@ Validation
    +---- PASS ---> Continue
    |
    +---- FAIL ---> Alert
-18. Incremental Processing
+
+---
+
+# 18. Incremental Processing
 
 The current project processes the dataset as a batch.
 
@@ -529,7 +578,10 @@ Processing based on order date
 Watermarking
 Incremental file ingestion
 Delta Lake versioning
-19. Production Improvements
+
+---
+
+# 19. Production Improvements
 
 Potential future improvements include:
 
@@ -548,7 +600,10 @@ Integration tests
 CI/CD
 Azure DevOps
 Power BI reporting
-20. Current vs Future Implementation
+
+---
+
+# 20. Current vs Future Implementation
 Current
 
 The project currently demonstrates:
@@ -578,7 +633,9 @@ Monitoring
 
 The cloud technologies listed above are planned extensions and are not claimed as part of the current local implementation.
 
-21. Project Goal
+---
+
+# 21. Project Goal
 
 The goal of RetailPulse is to demonstrate practical data engineering concepts through a complete pipeline rather than isolated scripts.
 
