@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RetailPulse: a retail sales ETL and analytics project using Python and PySpark.">
+  <title>RetailPulse | Data Analytics Project</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #131b2e;
+      --text: #edf2ff;
+      --muted: #a4b0c8;
+      --accent: #71e0bc;
+      --line: #29354d;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Segoe UI, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    a { color: var(--accent); }
+    .wrap { width: min(1080px, 90%); margin: auto; }
+    header {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    nav {
+      display: flex; justify-content: space-between;
+      align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .brand { font-weight: 800; font-size: 1.2rem; }
+    nav a { text-decoration: none; margin-left: 16px; }
+    .hero { padding: 76px 0 52px; }
+    .eyebrow {
+      color: var(--accent); font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      font-size: .78rem;
+    }
+    h1 { font-size: clamp(2.5rem, 6vw, 4.6rem); line-height: 1.08; margin: 14px 0; }
+    h2 { font-size: 1.8rem; margin-bottom: 10px; }
+    .intro { color: var(--muted); max-width: 700px; font-size: 1.1rem; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+    .btn {
+      display: inline-block; padding: 11px 17px;
+      border: 1px solid var(--accent); border-radius: 9px;
+      text-decoration: none; font-weight: 700;
+    }
+    .primary { background: var(--accent); color: #071711; }
+    section { padding: 34px 0; }
+    .muted { color: var(--muted); }
+    .grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 14px; margin-top: 22px;
+    }
+    .panel {
+      background: var(--panel); border: 1px solid var(--line);
+      border-radius: 14px; padding: 20px;
+    }
+    .metric { font-size: 2rem; font-weight: 800; color: var(--accent); }
+    .pipeline {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 14px; margin-top: 22px;
+    }
+    .step { border-top: 3px solid var(--accent); }
+    .step h3 { margin: 8px 0; }
+    .tag {
+      display: inline-block; padding: 4px 9px;
+      border: 1px solid var(--line); border-radius: 20px;
+      margin: 4px 4px 0 0; color: var(--muted); font-size: .85rem;
+    }
+    .table-wrap { overflow-x: auto; margin-top: 18px; }
+    table { width: 100%; border-collapse: collapse; min-width: 520px; }
+    th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--line); }
+    th { color: var(--accent); }
+    .note { font-size: .9rem; color: var(--muted); }
+    footer { border-top: 1px solid var(--line); padding: 25px 0; margin-top: 35px; }
+    @media (max-width: 700px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .pipeline { grid-template-columns: 1fr; }
+      .hero { padding-top: 50px; }
+      nav a { margin-left: 8px; }
+    }
+    @media (max-width: 380px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav>
+        <div class="brand">RetailPulse<span style="color:#71e0bc">.</span></div>
+        <div>
+          <a href="#pipeline">Pipeline</a>
+          <a href="#results">Results</a>
+          <a href="#about">About</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div class="eyebrow">Data Engineering · Analytics</div>
+      <h1>From raw orders<br>to useful insights.</h1>
+      <p class="intro">
+        RetailPulse is a retail sales data pipeline built with Python and
+        PySpark. It transforms synthetic order data into clean datasets
+        and product-level sales summaries.
+      </p>
+      <div class="actions">
+        <a class="btn primary"
+           href="https://github.com/Abhijeet01khot/RetailPulse">
+          View Source Code ↗
+        </a>
+        <a class="btn" href="#results">Explore Results ↓</a>
+      </div>
+      <p class="note">Portfolio project · Synthetic data · Windows-tested pipeline</p>
+    </section>
+
+    <section class="wrap" id="about">
+      <h2>Project at a glance</h2>
+      <p class="muted">
+        The objective is to demonstrate data ingestion, cleaning,
+        transformation, aggregation, and data-quality validation in
+        a structured ETL workflow.
+      </p>
+      <div class="grid">
+        <div class="panel"><div class="metric">500</div><div class="muted">Raw orders</div></div>
+        <div class="panel"><div class="metric">499</div><div class="muted">Cleaned orders</div></div>
+        <div class="panel"><div class="metric">8</div><div class="muted">Products summarized</div></div>
+        <div class="panel"><div class="metric">PASS</div><div class="muted">Implemented quality checks</div></div>
+      </div>
+    </section>
+
+    <section class="wrap" id="pipeline">
+      <h2>Three-layer data pipeline</h2>
+      <p class="muted">Each layer has a distinct role in preparing data for analysis.</p>
+      <div class="pipeline">
+        <article class="panel step">
+          <h3>01 · Bronze</h3>
+          <p>Stores the ingested order records as the raw processing layer.</p>
+          <span class="tag">500 records</span>
+          <p class="note">Output: data/bronze/orders</p>
+        </article>
+        <article class="panel step">
+          <h3>02 · Silver</h3>
+          <p>Removes duplicates, handles selected required fields, casts data types, and filters invalid values.</p>
+          <span class="tag">499 records</span>
+          <p class="note">Output: data/silver/orders</p>
+        </article>
+        <article class="panel step">
+          <h3>03 · Gold</h3>
+          <p>Aggregates total quantity and revenue by product for analysis.</p>
+          <span class="tag">8 product summaries</span>
+          <p class="note">Output: data/gold/sales</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap" id="results">
+      <h2>Product sales summary</h2>
+      <p class="muted">
+        Results from the saved Gold CSV generated by the pipeline.
+        Revenue values are shown as ordinary numbers for readability.
+      </p>
+      <div class="panel table-wrap">
+        <table>
+          <thead>
+            <tr><th>Product</th><th>Category</th><th>Total quantity</th><th>Total revenue</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Laptop</td><td>Electronics</td><td>165</td><td>10,725,000</td></tr>
+            <tr><td>Smartphone</td><td>Electronics</td><td>222</td><td>6,660,000</td></tr>
+            <tr><td>Monitor</td><td>Electronics</td><td>178</td><td>2,670,000</td></tr>
+            <tr><td>Desk</td><td>Furniture</td><td>192</td><td>2,304,000</td></tr>
+            <tr><td>Office Chair</td><td>Furniture</td><td>171</td><td>1,453,500</td></tr>
+            <tr><td>Headphones</td><td>Electronics</td><td>191</td><td>573,000</td></tr>
+            <tr><td>Keyboard</td><td>Electronics</td><td>204</td><td>510,000</td></tr>
+            <tr><td>Backpack</td><td>Accessories</td><td>220</td><td>396,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">
+        Key observation: Laptop has the highest revenue in this synthetic dataset.
+        These figures are illustrative and do not represent actual retail sales.
+      </p>
+    </section>
+
+    <section class="wrap">
+      <h2>Data quality</h2>
+      <div class="panel">
+        <p>Latest local validation result: <strong style="color:#71e0bc">PASS</strong></p>
+        <ul>
+          <li>499 records in the cleaned dataset</li>
+          <li>0 duplicate order IDs</li>
+          <li>0 missing values in the fields checked</li>
+          <li>0 invalid quantities or prices</li>
+        </ul>
+        <p class="note">
+          The checks cover the rules implemented in the project;
+          they do not validate every possible field or data-quality issue.
+        </p>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <h2>Technology stack</h2>
+      <span class="tag">Python</span>
+      <span class="tag">PySpark</span>
+      <span class="tag">Pandas</span>
+      <span class="tag">SQL</span>
+      <span class="tag">ETL</span>
+      <span class="tag">Data Quality</span>
+      <div class="actions">
+        <a class="btn primary"
+           href="https://github.com/Abhijeet01khot/RetailPulse">
+          Explore the code on GitHub ↗
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap muted">
+      RetailPulse · A data analytics portfolio project
+      <br>
+      <a href="https://github.com/Abhijeet01khot/RetailPulse">Source repository</a>
+    </div>
+  </footer>
+</body>
+</html>
