@@ -5,6 +5,8 @@
 ![SQL](https://img.shields.io/badge/SQL-Analytics-lightgrey)
 ![Pipeline](https://img.shields.io/badge/Pipeline-Bronze%20%7C%20Silver%20%7C%20Gold-green)
 
+🌐 **Live Project Website:** [View RetailPulse Portfolio](https://abhijeet01khot.github.io/RetailPulse/)
+
 RetailPulse is an end-to-end data engineering portfolio project that demonstrates how raw retail order data can be transformed into clean, validated, and analytics-ready datasets.
 
 The project uses **Python, PySpark, and SQL** to implement a layered data pipeline with automated data-quality checks.
